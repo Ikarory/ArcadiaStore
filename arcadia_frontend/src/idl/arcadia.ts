@@ -1,0 +1,1011 @@
+export type Arcadia = {
+  "version": "0.1.0",
+  "name": "arcadia",
+  "instructions": [
+    {
+      "name": "initStore",
+      "accounts": [
+        {
+          "name": "store",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "admin",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "createProfile",
+      "accounts": [
+        {
+          "name": "profile",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "username",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "changeWallet",
+      "accounts": [
+        {
+          "name": "profile",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "newAuthority",
+          "isMut": false,
+          "isSigner": true
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "createProduct",
+      "accounts": [
+        {
+          "name": "store",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "product",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "profile",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "seller",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "input",
+          "type": {
+            "defined": "ProductInput"
+          }
+        }
+      ]
+    },
+    {
+      "name": "updateProduct",
+      "accounts": [
+        {
+          "name": "product",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "seller",
+          "isMut": false,
+          "isSigner": true
+        }
+      ],
+      "args": [
+        {
+          "name": "input",
+          "type": {
+            "defined": "ProductUpdate"
+          }
+        }
+      ]
+    },
+    {
+      "name": "deleteProduct",
+      "accounts": [
+        {
+          "name": "product",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "seller",
+          "isMut": true,
+          "isSigner": true
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "buyProduct",
+      "accounts": [
+        {
+          "name": "store",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "product",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "ticket",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "buyerProfile",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "seller",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "quantity",
+          "type": "u32"
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "store",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "admin",
+            "type": "publicKey"
+          },
+          {
+            "name": "productCount",
+            "type": "u64"
+          },
+          {
+            "name": "ticketCount",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "profile",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "authority",
+            "type": "publicKey"
+          },
+          {
+            "name": "username",
+            "type": "string"
+          },
+          {
+            "name": "createdAt",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "product",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "id",
+            "type": "u64"
+          },
+          {
+            "name": "seller",
+            "type": "publicKey"
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "type": "string"
+          },
+          {
+            "name": "imageUri",
+            "type": "string"
+          },
+          {
+            "name": "category",
+            "type": {
+              "defined": "Category"
+            }
+          },
+          {
+            "name": "price",
+            "type": "u64"
+          },
+          {
+            "name": "stock",
+            "type": "u32"
+          },
+          {
+            "name": "isIllegal",
+            "type": "bool"
+          },
+          {
+            "name": "dropZone",
+            "type": "string"
+          },
+          {
+            "name": "active",
+            "type": "bool"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ticket",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "id",
+            "type": "u64"
+          },
+          {
+            "name": "buyer",
+            "type": "publicKey"
+          },
+          {
+            "name": "product",
+            "type": "publicKey"
+          },
+          {
+            "name": "quantity",
+            "type": "u32"
+          },
+          {
+            "name": "total",
+            "type": "u64"
+          },
+          {
+            "name": "isIllegal",
+            "type": "bool"
+          },
+          {
+            "name": "notice",
+            "type": "string"
+          },
+          {
+            "name": "createdAt",
+            "type": "i64"
+          }
+        ]
+      }
+    }
+  ],
+  "types": [
+    {
+      "name": "ProductInput",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "type": "string"
+          },
+          {
+            "name": "imageUri",
+            "type": "string"
+          },
+          {
+            "name": "category",
+            "type": {
+              "defined": "Category"
+            }
+          },
+          {
+            "name": "price",
+            "type": "u64"
+          },
+          {
+            "name": "stock",
+            "type": "u32"
+          },
+          {
+            "name": "isIllegal",
+            "type": "bool"
+          },
+          {
+            "name": "dropZone",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ProductUpdate",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "description",
+            "type": "string"
+          },
+          {
+            "name": "price",
+            "type": "u64"
+          },
+          {
+            "name": "stock",
+            "type": "u32"
+          },
+          {
+            "name": "active",
+            "type": "bool"
+          },
+          {
+            "name": "dropZone",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Category",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Retro"
+          },
+          {
+            "name": "Robopartes"
+          },
+          {
+            "name": "Protesis"
+          },
+          {
+            "name": "Armas"
+          },
+          {
+            "name": "Hardware"
+          },
+          {
+            "name": "Otro"
+          }
+        ]
+      }
+    }
+  ],
+  "events": [
+    {
+      "name": "TicketIssued",
+      "fields": [
+        {
+          "name": "ticketId",
+          "type": "u64",
+          "index": false
+        },
+        {
+          "name": "buyer",
+          "type": "publicKey",
+          "index": false
+        },
+        {
+          "name": "product",
+          "type": "publicKey",
+          "index": false
+        },
+        {
+          "name": "total",
+          "type": "u64",
+          "index": false
+        },
+        {
+          "name": "isIllegal",
+          "type": "bool",
+          "index": false
+        },
+        {
+          "name": "notice",
+          "type": "string",
+          "index": false
+        }
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "InvalidName",
+      "msg": "Nombre invalido"
+    },
+    {
+      "code": 6001,
+      "name": "TextTooLong",
+      "msg": "Texto demasiado largo"
+    },
+    {
+      "code": 6002,
+      "name": "InvalidPrice",
+      "msg": "Precio invalido"
+    },
+    {
+      "code": 6003,
+      "name": "MissingDropZone",
+      "msg": "Un producto de Arcadia.onion necesita una zona segura de entrega"
+    },
+    {
+      "code": 6004,
+      "name": "ProductInactive",
+      "msg": "Producto inactivo"
+    },
+    {
+      "code": 6005,
+      "name": "NoStock",
+      "msg": "Sin stock suficiente"
+    },
+    {
+      "code": 6006,
+      "name": "Overflow",
+      "msg": "Overflow"
+    }
+  ]
+};
+
+export const IDL: Arcadia = {
+  "version": "0.1.0",
+  "name": "arcadia",
+  "instructions": [
+    {
+      "name": "initStore",
+      "accounts": [
+        {
+          "name": "store",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "admin",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "createProfile",
+      "accounts": [
+        {
+          "name": "profile",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "username",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "changeWallet",
+      "accounts": [
+        {
+          "name": "profile",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": false,
+          "isSigner": true
+        },
+        {
+          "name": "newAuthority",
+          "isMut": false,
+          "isSigner": true
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "createProduct",
+      "accounts": [
+        {
+          "name": "store",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "product",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "profile",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "seller",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "input",
+          "type": {
+            "defined": "ProductInput"
+          }
+        }
+      ]
+    },
+    {
+      "name": "updateProduct",
+      "accounts": [
+        {
+          "name": "product",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "seller",
+          "isMut": false,
+          "isSigner": true
+        }
+      ],
+      "args": [
+        {
+          "name": "input",
+          "type": {
+            "defined": "ProductUpdate"
+          }
+        }
+      ]
+    },
+    {
+      "name": "deleteProduct",
+      "accounts": [
+        {
+          "name": "product",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "seller",
+          "isMut": true,
+          "isSigner": true
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "buyProduct",
+      "accounts": [
+        {
+          "name": "store",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "product",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "ticket",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "buyerProfile",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "seller",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "quantity",
+          "type": "u32"
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "store",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "admin",
+            "type": "publicKey"
+          },
+          {
+            "name": "productCount",
+            "type": "u64"
+          },
+          {
+            "name": "ticketCount",
+            "type": "u64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "profile",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "authority",
+            "type": "publicKey"
+          },
+          {
+            "name": "username",
+            "type": "string"
+          },
+          {
+            "name": "createdAt",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "product",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "id",
+            "type": "u64"
+          },
+          {
+            "name": "seller",
+            "type": "publicKey"
+          },
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "type": "string"
+          },
+          {
+            "name": "imageUri",
+            "type": "string"
+          },
+          {
+            "name": "category",
+            "type": {
+              "defined": "Category"
+            }
+          },
+          {
+            "name": "price",
+            "type": "u64"
+          },
+          {
+            "name": "stock",
+            "type": "u32"
+          },
+          {
+            "name": "isIllegal",
+            "type": "bool"
+          },
+          {
+            "name": "dropZone",
+            "type": "string"
+          },
+          {
+            "name": "active",
+            "type": "bool"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ticket",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "id",
+            "type": "u64"
+          },
+          {
+            "name": "buyer",
+            "type": "publicKey"
+          },
+          {
+            "name": "product",
+            "type": "publicKey"
+          },
+          {
+            "name": "quantity",
+            "type": "u32"
+          },
+          {
+            "name": "total",
+            "type": "u64"
+          },
+          {
+            "name": "isIllegal",
+            "type": "bool"
+          },
+          {
+            "name": "notice",
+            "type": "string"
+          },
+          {
+            "name": "createdAt",
+            "type": "i64"
+          }
+        ]
+      }
+    }
+  ],
+  "types": [
+    {
+      "name": "ProductInput",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "type": "string"
+          },
+          {
+            "name": "imageUri",
+            "type": "string"
+          },
+          {
+            "name": "category",
+            "type": {
+              "defined": "Category"
+            }
+          },
+          {
+            "name": "price",
+            "type": "u64"
+          },
+          {
+            "name": "stock",
+            "type": "u32"
+          },
+          {
+            "name": "isIllegal",
+            "type": "bool"
+          },
+          {
+            "name": "dropZone",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ProductUpdate",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "description",
+            "type": "string"
+          },
+          {
+            "name": "price",
+            "type": "u64"
+          },
+          {
+            "name": "stock",
+            "type": "u32"
+          },
+          {
+            "name": "active",
+            "type": "bool"
+          },
+          {
+            "name": "dropZone",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Category",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Retro"
+          },
+          {
+            "name": "Robopartes"
+          },
+          {
+            "name": "Protesis"
+          },
+          {
+            "name": "Armas"
+          },
+          {
+            "name": "Hardware"
+          },
+          {
+            "name": "Otro"
+          }
+        ]
+      }
+    }
+  ],
+  "events": [
+    {
+      "name": "TicketIssued",
+      "fields": [
+        {
+          "name": "ticketId",
+          "type": "u64",
+          "index": false
+        },
+        {
+          "name": "buyer",
+          "type": "publicKey",
+          "index": false
+        },
+        {
+          "name": "product",
+          "type": "publicKey",
+          "index": false
+        },
+        {
+          "name": "total",
+          "type": "u64",
+          "index": false
+        },
+        {
+          "name": "isIllegal",
+          "type": "bool",
+          "index": false
+        },
+        {
+          "name": "notice",
+          "type": "string",
+          "index": false
+        }
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "InvalidName",
+      "msg": "Nombre invalido"
+    },
+    {
+      "code": 6001,
+      "name": "TextTooLong",
+      "msg": "Texto demasiado largo"
+    },
+    {
+      "code": 6002,
+      "name": "InvalidPrice",
+      "msg": "Precio invalido"
+    },
+    {
+      "code": 6003,
+      "name": "MissingDropZone",
+      "msg": "Un producto de Arcadia.onion necesita una zona segura de entrega"
+    },
+    {
+      "code": 6004,
+      "name": "ProductInactive",
+      "msg": "Producto inactivo"
+    },
+    {
+      "code": 6005,
+      "name": "NoStock",
+      "msg": "Sin stock suficiente"
+    },
+    {
+      "code": 6006,
+      "name": "Overflow",
+      "msg": "Overflow"
+    }
+  ]
+};

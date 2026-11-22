@@ -1,0 +1,1 @@
+export const esperar = (ms: number) => new Promise<void>((r) => setTimeout(r, ms));
