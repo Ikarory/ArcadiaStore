@@ -11,6 +11,10 @@ La página tiene la apariencia de una web de la internet antigua, escondida de l
 
 ---
 
+## ¿Como Usar?
+Primero ve al link adjunto en la parte de arriba.
+Creas un perfil con tu wallet y un apodo, puedes comprar productos o vender los tuyos propios desde el boton 'mis productos'.
+
 ## ¿De qué trata?
 
 Arcadia funciona de verdad (cuentas, productos, compras y tickets viven en la blockchain), pero todo está envuelto en una sátira: una federación vigila el comercio, hay productos que no deberían existir y comprarlos tiene consecuencias.
