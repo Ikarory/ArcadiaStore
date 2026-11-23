@@ -8,6 +8,9 @@ import { RegistrationService } from "./core/RegistrationService";
 import { ProductService } from "./core/ProductService";
 import { PurchaseService } from "./core/PurchaseService";
 import { TicketListener } from "./core/TicketListener";
+import { MemorialService } from "./core/MemorialService";
+import { AccountRemovalService } from "./core/AccountRemovalService";
+import { FederationService } from "./core/FederationService";
 
 export function buildContainer(provider: AnchorProvider, getWallet: () => PublicKey | null) {
   const program = new Program<Arcadia>(IDL, PROGRAM_ID, provider);
@@ -18,6 +21,9 @@ export function buildContainer(provider: AnchorProvider, getWallet: () => Public
   const products = new ProductService(program, pdas, wallet);
   const purchases = new PurchaseService(program, pdas, products, wallet);
   const tickets = new TicketListener(program);
+  const memorial = new MemorialService(program);
+  const removal = new AccountRemovalService(program, pdas, products, wallet);
+  const federation = new FederationService(program, pdas, products, wallet);
 
-  return { wallet, registration, products, purchases, tickets };
+  return { wallet, registration, products, purchases, tickets, memorial, removal, federation };
 }

@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useWallet } from "../wallet/context";
 import { Logo } from "../components/Logo";
 import { Ventana } from "../components/Ventana";
+import { VersionTag } from "../components/VersionTag";
 
 export default function Login() {
   const { publicKey, hasPhantom, connect, error } = useWallet();
@@ -34,6 +35,7 @@ export default function Login() {
       <p className="muted center">
         ¿primera vez? <Link to="/registro">crear cuenta</Link>
       </p>
+      <VersionTag />
     </main>
   );
 }

@@ -30,3 +30,15 @@ export interface TicketView {
   isIllegal: boolean;
   notice: string;
 }
+
+export interface MemorialView {
+  username: string;
+  deletedAt: number; // segundos unix
+}
+
+export interface UsuarioResumen {
+  username: string;
+  wallet: PublicKey;
+  productos: number;
+  ilegales: number;
+}

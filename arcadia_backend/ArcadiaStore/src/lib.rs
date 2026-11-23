@@ -8,7 +8,7 @@ pub mod state;
 
 use instructions::*;
 
-declare_id!("Privado");
+declare_id!("CYVz9ePwR51JvnUdF3ZdEmf5TavfqkJhNkHLf1tjjxAe");
 
 #[program]
 pub mod arcadia {

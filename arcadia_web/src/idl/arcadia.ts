@@ -192,6 +192,58 @@ export type Arcadia = {
           "type": "u32"
         }
       ]
+    },
+    {
+      "name": "deleteProfile",
+      "accounts": [
+        {
+          "name": "profile",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": true,
+          "isSigner": true
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "deleteProfileMemorial",
+      "accounts": [
+        {
+          "name": "store",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "profile",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "memorial",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "refund",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "signer",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
     }
   ],
   "accounts": [
@@ -324,6 +376,22 @@ export type Arcadia = {
           },
           {
             "name": "createdAt",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "memorialEntry",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "username",
+            "type": "string"
+          },
+          {
+            "name": "deletedAt",
             "type": "i64"
           }
         ]
@@ -500,6 +568,21 @@ export type Arcadia = {
       "code": 6006,
       "name": "Overflow",
       "msg": "Overflow"
+    },
+    {
+      "code": 6007,
+      "name": "Unauthorized",
+      "msg": "Solo el dueno o el admin pueden hacer esto"
+    },
+    {
+      "code": 6008,
+      "name": "NoIllegalSales",
+      "msg": "No hay ventas ilegales que justifiquen el memorial"
+    },
+    {
+      "code": 6009,
+      "name": "NotYourProduct",
+      "msg": "Ese producto no pertenece al usuario"
     }
   ]
 };
@@ -698,6 +781,58 @@ export const IDL: Arcadia = {
           "type": "u32"
         }
       ]
+    },
+    {
+      "name": "deleteProfile",
+      "accounts": [
+        {
+          "name": "profile",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": true,
+          "isSigner": true
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "deleteProfileMemorial",
+      "accounts": [
+        {
+          "name": "store",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "profile",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "memorial",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "refund",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "signer",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": []
     }
   ],
   "accounts": [
@@ -830,6 +965,22 @@ export const IDL: Arcadia = {
           },
           {
             "name": "createdAt",
+            "type": "i64"
+          }
+        ]
+      }
+    },
+    {
+      "name": "memorialEntry",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "username",
+            "type": "string"
+          },
+          {
+            "name": "deletedAt",
             "type": "i64"
           }
         ]
@@ -1006,6 +1157,21 @@ export const IDL: Arcadia = {
       "code": 6006,
       "name": "Overflow",
       "msg": "Overflow"
+    },
+    {
+      "code": 6007,
+      "name": "Unauthorized",
+      "msg": "Solo el dueno o el admin pueden hacer esto"
+    },
+    {
+      "code": 6008,
+      "name": "NoIllegalSales",
+      "msg": "No hay ventas ilegales que justifiquen el memorial"
+    },
+    {
+      "code": 6009,
+      "name": "NotYourProduct",
+      "msg": "Ese producto no pertenece al usuario"
     }
   ]
 };

@@ -3,6 +3,9 @@ import Login from "./pages/Login";
 import Registro from "./pages/Registro";
 import Tienda from "./pages/Tienda";
 import Carrito from "./pages/Carrito";
+import Perfil from "./pages/Perfil";
+import AcercaDe from "./pages/AcercaDe";
+import Federacion from "./pages/Federacion";
 import EnDesarrollo from "./pages/EnDesarrollo";
 import MisProductos from "./pages/MisProductos";
 import NuevoProducto from "./pages/NuevoProducto";
@@ -19,8 +22,10 @@ export default function App() {
       <Route element={<RutaProtegida />}>
         <Route path="/tienda" element={<Tienda />} />
         <Route path="/carrito" element={<Carrito />} />
-        <Route path="/perfil" element={<EnDesarrollo titulo="perfil" />} />
+        <Route path="/perfil" element={<Perfil />} />
         <Route path="/mis-productos" element={<MisProductos />} />
+        <Route path="/acerca-de" element={<AcercaDe />} />
+        <Route path="/federacion" element={<Federacion />} />
       </Route>
 
       {/* con wallet, pero sin barra */}

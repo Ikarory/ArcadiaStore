@@ -187,3 +187,35 @@ h1, h2 { color: var(--pink); font-weight: normal; text-shadow: 0 0 8px rgba(255,
 .check { display: flex; gap: 8px; align-items: center; margin: 12px 0; cursor: pointer; }
 .check input { accent-color: var(--pink); width: 16px; height: 16px; }
 a.btn { display: inline-block; text-decoration: none; }
+
+.version {
+  position: fixed;
+  right: 12px;
+  bottom: 8px;
+  color: var(--dim);
+  font-size: 12px;
+  text-shadow: none;
+}
+.version b { color: var(--pink); font-weight: normal; }
+
+.memorial { text-align: center; }
+.memorial-titulo {
+  color: var(--pink);
+  font-size: 1.4em;
+  letter-spacing: 0.2em;
+  text-shadow: 0 0 8px rgba(255, 43, 214, 0.6);
+  margin: 4px 0;
+}
+
+.perfil { display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: start; }
+@media (max-width: 700px) { .perfil { grid-template-columns: 1fr; } }
+.avatar {
+  margin: 0;
+  color: var(--pink);
+  text-shadow: 0 0 8px rgba(255, 43, 214, 0.6);
+  font-size: 20px;
+  line-height: 1.1;
+}
+.wallet { word-break: break-all; color: var(--dim); }
+.opciones { display: flex; flex-wrap: wrap; gap: 8px; }
+.btn.sel { color: var(--bg); background: var(--fg); text-shadow: none; }

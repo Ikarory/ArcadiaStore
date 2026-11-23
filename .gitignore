@@ -1,0 +1,13 @@
+# carpeta antigua, ya reemplazada por arcadia_web
+arcadia_frontend/
+
+# dependencias y builds
+node_modules/
+dist/
+.vercel/
+
+# secretos
+.env
+.env.*
+!.env.example
+*keypair*.json

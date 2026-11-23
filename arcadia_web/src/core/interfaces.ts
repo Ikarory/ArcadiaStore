@@ -1,5 +1,5 @@
 import { PublicKey } from "@solana/web3.js";
-import { ProductView, ProfileView, TicketView } from "../domain/models";
+import { ProductView, ProfileView, TicketView, MemorialView, UsuarioResumen } from "../domain/models";
 
 export interface IWalletVerifier {
   /** Wallet conectada, o lanza error si no hay. */
@@ -49,4 +49,18 @@ export interface ProductChanges {
 
 export interface IRegistrationService {
   register(username: string): Promise<void>;
+}
+
+export interface IMemorialRepository {
+  list(): Promise<MemorialView[]>;
+}
+
+export interface IAccountRemoval {
+  deleteOwn(username: string): Promise<{ aMemorial: boolean }>;
+}
+
+export interface IFederation {
+  adminWallet(): Promise<PublicKey>;
+  listUsers(): Promise<UsuarioResumen[]>;
+  eliminar(username: string): Promise<void>;
 }

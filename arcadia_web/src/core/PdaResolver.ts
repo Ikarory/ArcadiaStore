@@ -18,4 +18,7 @@ export class PdaResolver {
   }
   product(id: number): PublicKey { return this.find([Buffer.from("product"), this.u64(id)]); }
   ticket(id: number): PublicKey { return this.find([Buffer.from("ticket"), this.u64(id)]); }
+    memorial(username: string): PublicKey {
+    return this.find([Buffer.from("memorial"), Buffer.from(username)]);
+  }
 }
