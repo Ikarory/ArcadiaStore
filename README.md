@@ -7,7 +7,7 @@
 
 La página tiene la apariencia de una web de la internet antigua, escondida de la internet actual: simple, tosca, con estética ciberpunk en negro, verde y toques rosas chillones, y un logo en arte ASCII de montañas.
 
-🌐 **Demo:** https://arcadiastore.vercel.app
+**Demo:** https://arcadiastore.vercel.app
 
 ---
 
@@ -100,6 +100,8 @@ En desarrollo irregular. La página se actualiza con el tiempo.
 0.1.0 - Utopia
 -Parece que hay infiltrados de la federación (El admin puede eliminar usuarios)
 <img width="1868" height="952" alt="image" src="https://github.com/user-attachments/assets/d327af0f-d898-45bf-a614-68dfe1226424" />
+-Perfiles ya disponible, cuidado con lo que vendes.
+<img width="1868" height="994" alt="image" src="https://github.com/user-attachments/assets/1c522270-6049-4db5-8a87-f7eccaed57d4" />
 
 
 ## Aviso
