@@ -96,10 +96,16 @@ En desarrollo irregular. La página se actualiza con el tiempo.
 
 ---
 
+## Actualizaciones 
+0.1.0 - Utopia
+-Parece que hay infiltrados de la federación (El admin puede eliminar usuarios)
+<img width="1868" height="952" alt="image" src="https://github.com/user-attachments/assets/d327af0f-d898-45bf-a614-68dfe1226424" />
+
+
 ## Aviso
 
 Arcadia es una **obra de sátira y ficción**. Los productos, la federación y el futuro memorial en próximas actualizaciones pertenecen a un mundo distópico inventado. El proyecto corre en devnet con SOL de prueba, no tiene valor real.
-//el arcadia_frontend es una version previa a la web, es una version de pruebas que solo funciona en la terminal.
+arcadia_frontend es una version previa a la web, es una version de pruebas que solo funciona en la terminal.
 ---
 
 ## Créditos
