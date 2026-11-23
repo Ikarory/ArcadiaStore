@@ -106,8 +106,10 @@ En desarrollo irregular. La página se actualiza con el tiempo.
 <img width="1868" height="952" alt="image" src="https://github.com/user-attachments/assets/d327af0f-d898-45bf-a614-68dfe1226424" />
 -Perfiles ya disponible, cuidado con lo que vendes.
 <img width="1868" height="994" alt="image" src="https://github.com/user-attachments/assets/1c522270-6049-4db5-8a87-f7eccaed57d4" />
+
 -¿Primer edgerunner muerto? Añadido acerca de con un novedades y un memorial a los caidos
 <img width="686" height="188" alt="image" src="https://github.com/user-attachments/assets/70026b6e-e446-4111-ae60-0088e73f9017" />
+
 -Proximamente un sistema de reputación y más expansión de historia (quizá nunca)
 
 
