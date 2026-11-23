@@ -14,6 +14,7 @@ La página tiene la apariencia de una web de la internet antigua, escondida de l
 ## ¿Como Usar?
 Primero ve al link adjunto en la parte de arriba.
 Creas un perfil con tu wallet y un apodo, puedes comprar productos o vender los tuyos propios desde el boton 'mis productos'.
+(Atención error con crear productos relacionados a arma y otros más (debido a un error de sintaxis), por el momento solo puedes seleccionar otros y retro)
 
 ## ¿De qué trata?
 
